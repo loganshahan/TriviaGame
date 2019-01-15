@@ -2,32 +2,38 @@ var questions = [
 	{
 		question: "Who holds the record for most rushing yards?",
 		answers: ['Emmitt Smith', 'Zeke Williams', 'Hershell Walker'],
-		correctAnswer: 1,
+        correctAnswer: 0,
+        answerWord : "Emmitt Smith",
 	},
 	{
 		question: "Who was the last quarterback to win a Super Bowl?",
 		answers: ['Tony Romo', 'Roger Staubach', 'Troy Aikman'],
-		correctAnswer: "Troy Aikmans",
+        correctAnswer: 2,
+        answerWord: "Troy Aikman"
     },
     {
 		question: "What is the nickname for the new stadium?",
 		answers: ['AT&T Field', 'Jerry World', 'The Star'],
-		correctAnswer: "Jerry World",
+        correctAnswer: 1,
+        answerWord: "Jerry World"
 	},
 	{
 		question: "What are the uniform colors?",
 		answers: ['black and yellow', 'red and blue', 'blue and silver'],
-		correctAnswer: "blue and silver",
+        correctAnswer: 2,
+        answerWord: "blue and silver"
     },
     {
 		question: "How many Super Bowls have the Cowboys won?",
 		answers: ['5', '4', '0'],
-		correctAnswer: "5",
+        correctAnswer: 0,
+        answerWord: "5"
 	},
 	{
 		question: "Who is the current starting quarterback?",
 		answers: ['Tony Romo', 'Troy Aikman', 'Dak Prescott'],
-		correctAnswer: "Dak Prescott",
+        correctAnswer: 2,
+        answerWord: "Dak Prescott"
     },
 ];
 
@@ -101,7 +107,8 @@ function submitAnswer(){
         e.preventDefault();
         userAnswer.length = 0;
 
-        var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
+        // var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
+        var userSelection = $("input[name=optionsRadios]:checked").val();
 		userAnswer.push(userSelection);
 		console.log(userAnswer);
 		nextQ();
@@ -145,7 +152,7 @@ function clearQ() {
 	var questionDiv = $(".questionX");
 	questionDiv.empty();
 
-	var responsesDiv = $("#responses");
+	var responsesDiv = $("#response");
 	responsesDiv.empty();
 
 	var submitDiv = $("#submit-div");
@@ -159,19 +166,20 @@ function clearQ() {
 
 function checkQ() {
 	clearQ();
-	var correctAnswers = questions[questionCounter].correctAnswer;
+    var correctAnswers = questions[questionCounter].correctAnswer;
+    var correctAnswerWord = questions[questionCounter].answerWord;
 	if (userAnswer[0] == correctAnswers) {
 		$("#content").append('<h3>'+"Congratulations! You chose the right answer!" + '</h3>');
 		correct++;
 		displayTimer();
 	}
 	else if (userAnswer[0] === undefined) {
-		$("#content").append('<h3>'+"Time's up!" + '</h3><br><br><h3>' + "The correct answer was: " + correctAnswers + '</h3>');
+		$("#content").append('<h3>'+"Time's up!" + '</h3><br><br><h3>' + "The correct answer was: " + correctAnswerWord + '</h3>');
 		missed++;
 		displayTimer();
 	}
 	else {
-		$("#content").append('<h3>'+"You chose the wrong answer." + '</h3><br><br><h3>' + "The correct answer was: " + correctAnswers + '</h3>');
+        $("#content").append('<h3>'+"You chose the wrong answer." + '</h3><br><br><h3>' + "The correct answer was: " + correctAnswerWord + '</h3>');
 		incorrect++;
 		displayTimer();
 	};
