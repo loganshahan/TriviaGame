@@ -9,3 +9,8 @@
 #optionsRadios2{
     float: left;
 }
+body{
+    background-image: url ('https://stmed.net/sites/default/files/dallas-cowboys-wallpapers-31003-1576803.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
