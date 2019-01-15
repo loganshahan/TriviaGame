@@ -54,3 +54,21 @@ var questions = [
 		correctAnswer: 'c'
     },
 ];
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+
+	function showQuestions(questions, quizContainer){
+		document.getElementById("quiz").innerHTML("")
+	}
+
+	function showResults(questions, quizContainer, resultsContainer){
+		// code will go here
+	}
+
+	// show the questions
+	showQuestions(questions, quizContainer);
+
+	// when user clicks submit, show results
+	submitButton.onclick = function(){
+		showResults(questions, quizContainer, resultsContainer);
+	}
+}
