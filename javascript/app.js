@@ -2,7 +2,7 @@ var questions = [
 	{
 		question: "Who holds the record for most rushing yards?",
 		answers: ['Emmitt Smith', 'Zeke Williams', 'Hershell Walker'],
-		correctAnswer: "Emmitt Smith",
+		correctAnswer: 1,
 	},
 	{
 		question: "Who was the last quarterback to win a Super Bowl?",
@@ -40,17 +40,7 @@ var questionCounter = 0;
 var timeLeft = 10;
 var increment;
 
-function submitAnswer(){
-    $("#submit").on("click", function(e){
-        e.preventDefault();
-        userAnswer.length = 0;
 
-        var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
-		userAnswer.push(userSelection);
-		console.log(userAnswer);
-		nextQ();
-    })
-};
 
 function runTimer(){
     increment = setInterval(decrement, 1000);
@@ -65,7 +55,7 @@ function decrement(){
 
         var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
 		userAnswer.push(userSelection);
-		console.log(userAnswer);
+		// console.log(userAnswer);
 		nextQ();
     }
 };
@@ -84,7 +74,7 @@ function stopTimer() {
 };
 
 function createRadios() {
-	var responseOptions = $("#responses");
+	var responseOptions = $("#response");
 	
 	responseOptions.empty();
 		
@@ -104,6 +94,18 @@ function displayQ() {
 	$("#submit-div").append('<button type="submit" class="btn btn-default" id="submit">' + "Submit" + '</button>');
 	runTimer()
 	submitAnswer();
+};
+
+function submitAnswer(){
+    $("#submit").on("click", function(e){
+        e.preventDefault();
+        userAnswer.length = 0;
+
+        var userSelection = $("#responses input:radio[name=optionsRadios]:checked").val();
+		userAnswer.push(userSelection);
+		console.log(userAnswer);
+		nextQ();
+    })
 };
 
 function displayStart() {
@@ -158,7 +160,7 @@ function clearQ() {
 function checkQ() {
 	clearQ();
 	var correctAnswers = questions[questionCounter].correctAnswer;
-	if (userAnswer[0] == questions[questionCounter].correctAnswer) {
+	if (userAnswer[0] == correctAnswers) {
 		$("#content").append('<h3>'+"Congratulations! You chose the right answer!" + '</h3>');
 		correct++;
 		displayTimer();
