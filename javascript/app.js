@@ -37,7 +37,7 @@ var questions = [
     },
 ];
 
-var answerTimeout = 10000;
+var answerTimeout = 3000;
 var correct = 0;
 var incorrect = 0;
 var missed = 0;
@@ -54,7 +54,7 @@ function runTimer(){
 
 function decrement(){
     timeLeft--;
-    $("#time-left").html("Time remaining: " + timeLeft + "seconds");
+    $("#time-left").html("Time remaining: " + timeLeft + " seconds");
     if(timeLeft===0){
         stopTimer();
         userAnswer.length = 0;
